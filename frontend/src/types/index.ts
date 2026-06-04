@@ -13,7 +13,7 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
-  role: 'customer' | 'admin';
+  role: "customer" | "admin";
   phone?: string;
   avatar?: string;
   addresses?: IAddress[];
@@ -87,7 +87,7 @@ export interface IProductFilter {
   category?: string;
   minPrice?: number;
   maxPrice?: number;
-  sort?: 'newest' | 'price_asc' | 'price_desc' | 'popular' | 'rating';
+  sort?: "newest" | "price_asc" | "price_desc" | "popular" | "rating";
   featured?: boolean;
   inStock?: boolean;
   page?: number;
@@ -120,9 +120,20 @@ export interface ICart {
 }
 
 // ===== ORDER TYPES =====
-export type OrderStatus = 'pending_payment' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
-export type PaymentMethod = 'bank_transfer' | 'credit_card' | 'e_wallet' | 'cod';
-export type PaymentStatus = 'unpaid' | 'paid' | 'refunded' | 'failed';
+export type OrderStatus =
+  | "pending_payment"
+  | "paid"
+  | "processing"
+  | "shipped"
+  | "delivered"
+  | "cancelled"
+  | "refunded";
+export type PaymentMethod =
+  | "bank_transfer"
+  | "credit_card"
+  | "e_wallet"
+  | "cod";
+export type PaymentStatus = "unpaid" | "paid" | "refunded" | "failed";
 
 export interface IOrderItem {
   product: IProduct | string;

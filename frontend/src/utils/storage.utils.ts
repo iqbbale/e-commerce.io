@@ -1,5 +1,5 @@
-import { STORAGE_KEYS } from '../constants/env';
-import { IUser } from '../types';
+import { STORAGE_KEYS } from "../constants/env";
+import { IUser } from "../types";
 
 // ===== Token Storage =====
 export const tokenStorage = {
@@ -60,7 +60,9 @@ export const authStorage = {
 export const searchHistoryStorage = {
   get: (): string[] => {
     try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEYS.SEARCH_HISTORY) || '[]');
+      return JSON.parse(
+        localStorage.getItem(STORAGE_KEYS.SEARCH_HISTORY) || "[]",
+      );
     } catch {
       return [];
     }
@@ -77,19 +79,22 @@ export const searchHistoryStorage = {
 
 // ===== Format Helpers =====
 export const formatCurrency = (amount: number): string => {
-  return new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
 };
 
-export const formatDate = (date: string | Date, options?: Intl.DateTimeFormatOptions): string => {
-  return new Intl.DateTimeFormat('id-ID', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+export const formatDate = (
+  date: string | Date,
+  options?: Intl.DateTimeFormatOptions,
+): string => {
+  return new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
     ...options,
   }).format(new Date(date));
 };
@@ -102,7 +107,7 @@ export const formatRelativeTime = (date: string | Date): string => {
   const diffHours = Math.floor(diffMinutes / 60);
   const diffDays = Math.floor(diffHours / 24);
 
-  if (diffMinutes < 1) return 'Baru saja';
+  if (diffMinutes < 1) return "Baru saja";
   if (diffMinutes < 60) return `${diffMinutes} menit lalu`;
   if (diffHours < 24) return `${diffHours} jam lalu`;
   if (diffDays < 7) return `${diffDays} hari lalu`;
@@ -111,23 +116,28 @@ export const formatRelativeTime = (date: string | Date): string => {
 
 export const truncateText = (text: string, maxLength: number): string => {
   if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength).trim() + '...';
+  return text.substring(0, maxLength).trim() + "...";
 };
 
 export const getInitials = (name: string): string => {
   return name
-    .split(' ')
+    .split(" ")
     .map((n) => n[0])
     .slice(0, 2)
-    .join('')
+    .join("")
     .toUpperCase();
 };
 
-export const calculateDiscount = (price: number, comparePrice?: number): number => {
+export const calculateDiscount = (
+  price: number,
+  comparePrice?: number,
+): number => {
   if (!comparePrice || comparePrice <= price) return 0;
   return Math.round(((comparePrice - price) / comparePrice) * 100);
 };
 
-export const clsx = (...classes: (string | undefined | false | null)[]): string => {
-  return classes.filter(Boolean).join(' ');
+export const clsx = (
+  ...classes: (string | undefined | false | null)[]
+): string => {
+  return classes.filter(Boolean).join(" ");
 };

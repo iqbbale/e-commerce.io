@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { IUser, ICart, ICartItem } from '../types';
-import { authStorage, userStorage, tokenStorage } from './storage.utils';
+import { create } from "zustand";
+import { IUser, ICart, ICartItem } from "../types";
+import { authStorage, userStorage, tokenStorage } from "./storage.utils";
 
 // ===== AUTH STORE =====
 interface AuthStore {
@@ -25,7 +25,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     userStorage.setUser(user);
     // Lalu update Zustand state
     set({ user, isAuthenticated: true, isLoading: false });
-    console.log('[AUTH] setAuth called, role:', user.role);
+    console.log("[AUTH] setAuth called, role:", user.role);
   },
 
   logout: () => {
@@ -39,7 +39,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
       const token = tokenStorage.getAccessToken();
       if (user && token) {
         set({ user, isAuthenticated: true, isLoading: false });
-        console.log('[AUTH] Restored session:', user.email, user.role);
+        console.log("[AUTH] Restored session:", user.email, user.role);
       } else {
         set({ isLoading: false });
       }
@@ -88,6 +88,6 @@ export const useCartStore = create<CartStore>((set, get) => ({
   getTotal: () =>
     get().cart?.items.reduce(
       (sum: number, item: ICartItem) => sum + item.price * item.quantity,
-      0
+      0,
     ) || 0,
 }));
