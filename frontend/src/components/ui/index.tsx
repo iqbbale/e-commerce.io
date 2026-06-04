@@ -1,12 +1,15 @@
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingBag } from "lucide-react";
 
 // ===== PAGE LOADER =====
 export const PageLoader = () => (
-  <div className="fixed inset-0 flex items-center justify-center z-50" style={{ background: 'var(--color-bg)' }}>
+  <div
+    className="fixed inset-0 flex items-center justify-center z-50"
+    style={{ background: "var(--color-bg)" }}
+  >
     <div className="flex flex-col items-center gap-4">
       <div
         className="w-14 h-14 rounded-2xl flex items-center justify-center animate-pulse-glow"
-        style={{ background: 'linear-gradient(135deg, #f97316, #ea580c)' }}
+        style={{ background: "linear-gradient(135deg, #f97316, #ea580c)" }}
       >
         <ShoppingBag className="text-white animate-float" size={28} />
       </div>
@@ -16,7 +19,7 @@ export const PageLoader = () => (
             key={i}
             className="w-2 h-2 rounded-full animate-bounce"
             style={{
-              background: '#f97316',
+              background: "#f97316",
               animationDelay: `${i * 0.15}s`,
             }}
           />
@@ -58,8 +61,8 @@ export const Spinner = ({ size = 20 }: { size?: number }) => (
     style={{
       width: size,
       height: size,
-      borderColor: 'rgba(249,115,22,0.2)',
-      borderTopColor: '#f97316',
+      borderColor: "rgba(249,115,22,0.2)",
+      borderTopColor: "#f97316",
     }}
   />
 );
@@ -72,7 +75,12 @@ interface StarRatingProps {
   showCount?: boolean;
 }
 
-export const StarRating = ({ rating, count, size = 14, showCount = false }: StarRatingProps) => (
+export const StarRating = ({
+  rating,
+  count,
+  size = 14,
+  showCount = false,
+}: StarRatingProps) => (
   <div className="flex items-center gap-1.5">
     <div className="flex items-center">
       {[1, 2, 3, 4, 5].map((star) => (
@@ -81,8 +89,8 @@ export const StarRating = ({ rating, count, size = 14, showCount = false }: Star
           width={size}
           height={size}
           viewBox="0 0 24 24"
-          fill={star <= Math.round(rating) ? '#f59e0b' : 'none'}
-          stroke={star <= Math.round(rating) ? '#f59e0b' : '#d1d5db'}
+          fill={star <= Math.round(rating) ? "#f59e0b" : "none"}
+          stroke={star <= Math.round(rating) ? "#f59e0b" : "#d1d5db"}
           strokeWidth="1.5"
         >
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -90,12 +98,14 @@ export const StarRating = ({ rating, count, size = 14, showCount = false }: Star
       ))}
     </div>
     {showCount && count !== undefined && (
-      <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+      <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
         ({count.toLocaleString()})
       </span>
     )}
     {!showCount && (
-      <span className="text-xs font-semibold" style={{ color: '#f59e0b' }}>{rating.toFixed(1)}</span>
+      <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>
+        {rating.toFixed(1)}
+      </span>
     )}
   </div>
 );
@@ -103,22 +113,26 @@ export const StarRating = ({ rating, count, size = 14, showCount = false }: Star
 // ===== BADGE =====
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'default';
-  size?: 'sm' | 'md';
+  variant?: "primary" | "success" | "warning" | "danger" | "info" | "default";
+  size?: "sm" | "md";
 }
 
-export const Badge = ({ children, variant = 'default', size = 'md' }: BadgeProps) => {
+export const Badge = ({
+  children,
+  variant = "default",
+  size = "md",
+}: BadgeProps) => {
   const variantClasses = {
-    primary: 'bg-orange-50 text-orange-600 border-orange-200',
-    success: 'bg-emerald-50 text-emerald-600 border-emerald-200',
-    warning: 'bg-amber-50 text-amber-600 border-amber-200',
-    danger: 'bg-rose-50 text-rose-600 border-rose-200',
-    info: 'bg-sky-50 text-sky-600 border-sky-200',
-    default: 'bg-slate-50 text-slate-600 border-slate-200',
+    primary: "bg-orange-50 text-orange-600 border-orange-200",
+    success: "bg-emerald-50 text-emerald-600 border-emerald-200",
+    warning: "bg-amber-50 text-amber-600 border-amber-200",
+    danger: "bg-rose-50 text-rose-600 border-rose-200",
+    info: "bg-sky-50 text-sky-600 border-sky-200",
+    default: "bg-slate-50 text-slate-600 border-slate-200",
   };
   const sizeClasses = {
-    sm: 'text-[10px] px-1.5 py-0.5',
-    md: 'text-xs px-2.5 py-0.5',
+    sm: "text-[10px] px-1.5 py-0.5",
+    md: "text-xs px-2.5 py-0.5",
   };
 
   return (
@@ -136,14 +150,27 @@ interface EmptyStateProps {
   action?: React.ReactNode;
 }
 
-export const EmptyState = ({ icon, title, description, action }: EmptyStateProps) => (
+export const EmptyState = ({
+  icon,
+  title,
+  description,
+  action,
+}: EmptyStateProps) => (
   <div className="flex flex-col items-center justify-center py-16 text-center gap-3">
-    {icon && (
-      <div className="text-5xl opacity-40 mb-2">{icon}</div>
-    )}
-    <h3 className="font-bold text-lg" style={{ fontFamily: 'Syne, sans-serif' }}>{title}</h3>
+    {icon && <div className="text-5xl opacity-40 mb-2">{icon}</div>}
+    <h3
+      className="font-bold text-lg"
+      style={{ fontFamily: "Syne, sans-serif" }}
+    >
+      {title}
+    </h3>
     {description && (
-      <p className="text-sm max-w-sm" style={{ color: 'var(--color-text-muted)' }}>{description}</p>
+      <p
+        className="text-sm max-w-sm"
+        style={{ color: "var(--color-text-muted)" }}
+      >
+        {description}
+      </p>
     )}
     {action && <div className="mt-3">{action}</div>}
   </div>
@@ -158,17 +185,44 @@ interface ModalProps {
   maxWidth?: string;
 }
 
-export const Modal = ({ isOpen, onClose, title, children, maxWidth = '500px' }: ModalProps) => {
+export const Modal = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  maxWidth = "500px",
+}: ModalProps) => {
   if (!isOpen) return null;
   return (
-    <div className="modal-backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div
+      className="modal-backdrop"
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
       <div className="modal" style={{ maxWidth }}>
         {title && (
-          <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: 'var(--color-border)' }}>
-            <h3 className="font-bold text-lg" style={{ fontFamily: 'Syne, sans-serif' }}>{title}</h3>
-            <button onClick={onClose} className="btn btn-ghost p-1.5 rounded-lg">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 6 6 18M6 6l12 12"/>
+          <div
+            className="flex items-center justify-between p-6 border-b"
+            style={{ borderColor: "var(--color-border)" }}
+          >
+            <h3
+              className="font-bold text-lg"
+              style={{ fontFamily: "Syne, sans-serif" }}
+            >
+              {title}
+            </h3>
+            <button
+              onClick={onClose}
+              className="btn btn-ghost p-1.5 rounded-lg"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
               </svg>
             </button>
           </div>
@@ -192,29 +246,60 @@ interface ConfirmDialogProps {
 }
 
 export const ConfirmDialog = ({
-  isOpen, onClose, onConfirm, title, message,
-  confirmLabel = 'Konfirmasi', isDestructive = false, isLoading = false,
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+  message,
+  confirmLabel = "Konfirmasi",
+  isDestructive = false,
+  isLoading = false,
 }: ConfirmDialogProps) => (
   <Modal isOpen={isOpen} onClose={onClose} maxWidth="420px">
     <div className="text-center">
       <div
         className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
-        style={{ background: isDestructive ? 'rgba(244,63,94,0.1)' : 'rgba(249,115,22,0.1)' }}
+        style={{
+          background: isDestructive
+            ? "rgba(244,63,94,0.1)"
+            : "rgba(249,115,22,0.1)",
+        }}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isDestructive ? '#f43f5e' : '#f97316'} strokeWidth="2">
-          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-          <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke={isDestructive ? "#f43f5e" : "#f97316"}
+          strokeWidth="2"
+        >
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+          <line x1="12" y1="9" x2="12" y2="13" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
         </svg>
       </div>
-      <h3 className="font-bold text-lg mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>{title}</h3>
-      <p className="text-sm mb-6" style={{ color: 'var(--color-text-muted)' }}>{message}</p>
+      <h3
+        className="font-bold text-lg mb-2"
+        style={{ fontFamily: "Syne, sans-serif" }}
+      >
+        {title}
+      </h3>
+      <p className="text-sm mb-6" style={{ color: "var(--color-text-muted)" }}>
+        {message}
+      </p>
       <div className="flex gap-3">
-        <button onClick={onClose} className="btn btn-secondary flex-1" disabled={isLoading}>Batal</button>
+        <button
+          onClick={onClose}
+          className="btn btn-secondary flex-1"
+          disabled={isLoading}
+        >
+          Batal
+        </button>
         <button
           onClick={onConfirm}
           disabled={isLoading}
           className="btn flex-1 text-white"
-          style={{ background: isDestructive ? '#f43f5e' : '#f97316' }}
+          style={{ background: isDestructive ? "#f43f5e" : "#f97316" }}
         >
           {isLoading ? <Spinner size={16} /> : confirmLabel}
         </button>
@@ -230,7 +315,11 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-export const Pagination = ({ page, totalPages, onPageChange }: PaginationProps) => {
+export const Pagination = ({
+  page,
+  totalPages,
+  onPageChange,
+}: PaginationProps) => {
   if (totalPages <= 1) return null;
 
   const pages = Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -255,8 +344,8 @@ export const Pagination = ({ page, totalPages, onPageChange }: PaginationProps) 
           onClick={() => onPageChange(p)}
           className="w-9 h-9 rounded-lg text-sm font-medium transition-all"
           style={{
-            background: p === page ? '#f97316' : 'transparent',
-            color: p === page ? 'white' : 'var(--color-text-muted)',
+            background: p === page ? "#f97316" : "transparent",
+            color: p === page ? "white" : "var(--color-text-muted)",
           }}
         >
           {p}
